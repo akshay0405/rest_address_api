@@ -155,6 +155,9 @@ class GetStatelist(APIView):
     def get(self,request):
         state=self.read_csv()
         return Response({"States":state,"Country":"India"},status=status.HTTP_200_OK)
+
+def HomeView(request):
+    return render(request,'api/homepage.html')
     
 
         

@@ -9,5 +9,8 @@ urlpatterns = [
    path('get_towns',views.GetTowns.as_view(),name="townurl"),
    path('get_districts',views.GetDistrictname.as_view(),name="districturl"),
    path('get_states',views.GetStatelist.as_view(),name="stateurl"),
+   path('',views.HomeView,name="Homepage"),
+
+
 
 ]
