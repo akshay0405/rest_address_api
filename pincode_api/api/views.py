@@ -125,7 +125,7 @@ class GetTowns(APIView):
             else:
                 return Response({"towns":towns,"district":request.POST["district"]},status=status.HTTP_200_OK)
 
-class GetStatename(APIView):
+class GetDistrictname(APIView):
     def read_csv(self,State):
         district=set()
         filename="./data/Town_Codes_2001.csv"
@@ -142,6 +142,20 @@ class GetStatename(APIView):
         else:
             district=self.read_csv(State=request.GET["State"])
             return Response({"districts":district,"State":request.GET["State"]},status=status.HTTP_200_OK)
+class GetStatelist(APIView):
+    def read_csv(self):
+        State=set()
+        filename="./data/Town_Codes_2001.csv"
+        with open(filename) as pincodecsv:
+            reader=csv.DictReader(pincodecsv,delimiter=",")
+            for row in reader:
+                State.add(row["State"])
+            return State
+
+    def get(self,request):
+        state=self.read_csv()
+        return Response({"States":state,"Country":"India"},status=status.HTTP_200_OK)
+    
 
         
 
